@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
-use Illuminate\Auth\Access\Response;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class SettingController extends Controller
 {
