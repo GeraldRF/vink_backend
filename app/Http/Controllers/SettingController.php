@@ -17,7 +17,7 @@ class SettingController extends Controller
     {
         $settings = Setting::all();
 
-        return Response::json($settings, 200);
+        return response($settings, 200);
     }
 
     /**
