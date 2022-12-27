@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/settings', [SettingController::class, 'getAllSettings']);
+Route::post('/settings/update', [SettingController::class, 'updateSetting']);

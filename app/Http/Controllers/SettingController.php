@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -21,58 +22,27 @@ class SettingController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function updateSetting(Request $request)
     {
-        //
-    }
+        try {
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+            $slug = $request->get('slug');
+            $value = $request->get('value');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Setting $setting)
-    {
-        //
-    }
+            throw_if(empty($slug), new Exception('Slug param is empty', 400));
+            throw_if(empty($value), new Exception('New value param is empty', 400));
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Setting $setting)
-    {
-        //
-    }
+            $isUpdated = Setting::where(['slug' => $slug])->update(['value' => $value]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Setting $setting)
-    {
-        //
+            if($isUpdated){
+                return response('The settings have been successfully updated.', 200);
+            }
+
+        } catch(Exception $e){
+            return response($e->getMessage(), $e->getCode());
+        }
     }
 
     /**
@@ -81,7 +51,7 @@ class SettingController extends Controller
      * @param  \App\Models\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Setting $setting)
+    public function deleteSetting()
     {
         //
     }
