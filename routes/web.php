@@ -18,5 +18,3 @@ Route::get('/', function () {
     return 'welcome to vink api';
 });
 
-Route::get('/settings', [SettingController::class, 'getAllSettings']);
-
