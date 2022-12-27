@@ -41,7 +41,7 @@ class SettingController extends Controller
             }
 
         } catch(Exception $e){
-            return response($e->getMessage(), $e->getCode());
+            return response($e->getMessage(), (int)$e->getCode());
         }
     }
 
