@@ -17,7 +17,7 @@ class SettingController extends Controller
     {
         $settings = Setting::all();
 
-        return Response::json(collect($settings), 200)->header('Access-Control-Allow-Origin','*');
+        return Response::json(collect($settings), 200);
     }
 
     /**
