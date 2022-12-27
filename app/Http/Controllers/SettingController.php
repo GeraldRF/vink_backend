@@ -22,7 +22,7 @@ class SettingController extends Controller
         });
 
         return response('fetch', 200);
-        return response($settings, 200);
+        //return response($settings, 200);
     }
 
     /**
