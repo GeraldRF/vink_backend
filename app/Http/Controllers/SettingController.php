@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class SettingController extends Controller
 {
@@ -16,7 +17,7 @@ class SettingController extends Controller
     {
         $settings = Setting::all();
 
-        return $settings;
+        return Response::json(collect($settings), 200)->header('Access-Control-Allow-Origin','*');
     }
 
     /**
