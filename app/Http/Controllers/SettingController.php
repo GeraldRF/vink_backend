@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Setting;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Response;
 
 class SettingController extends Controller
@@ -16,7 +17,9 @@ class SettingController extends Controller
      */
     public function getAllSettings()
     {
-        $settings = Setting::all();
+        $settings = Cache::remember('all-settings', 1000000, function () {
+            return Setting::all();
+        });
 
         return response($settings, 200);
     }
