@@ -21,6 +21,7 @@ class SettingController extends Controller
             return Setting::all();
         });
 
+        return response('fetch', 200);
         return response($settings, 200);
     }
 
