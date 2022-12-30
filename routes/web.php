@@ -18,5 +18,5 @@ Route::get('/', function () {
     return 'welcome to vink api';
 });
 
-Route::get('/login', [UserController::class, 'login']);
+Route::post('/login', [UserController::class, 'login']);
 
