@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return 'welcome to vink api 3.0';
+    return 'welcome to vink api';
 });
 
 Route::post('/login', [UserController::class, 'login']);
