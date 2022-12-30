@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Public routes
 Route::get('/settings', [SettingController::class, 'getAllSettings']);
 Route::post('/settings/update', [SettingController::class, 'updateSetting']);
+
+//Admin routes
+Route::middleware('auth:sanctum') -> group(function () {
+    Route::post('/create-product', [ProductController::class, 'createProduct']);
+    Route::post('/get-all-products', [ProductController::class, 'getAllProducts']);
+});
