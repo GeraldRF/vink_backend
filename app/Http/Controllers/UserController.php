@@ -16,7 +16,7 @@ class UserController extends Controller
 
         try {
 
-            throw_if(!Auth::attempt($request->only('email', 'password')), new Exception('Usuario incorrecto', 400));
+            throw_if(!Auth::attempt($request->only('email', 'password')), new Exception('Credenciales incorrectas, intentelo nuevamente.', 400));
                 
             $user = User::where(['email' => $email])->firstOrFail();
             $token = $user->createToken('auth_token')->plainTextToken;
