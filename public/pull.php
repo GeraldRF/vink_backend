@@ -9,8 +9,7 @@ function execPrint($command) {
     }
     print("</pre>");
 }
-// Print the exec output inside of a pre element
-execPrint("git pull https://GeraldRF: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@github.com/GeraldRF/vink_backend.git main");
-execPrint("git status");
+
+execPrint("git pull origin main");
 
 ?>
