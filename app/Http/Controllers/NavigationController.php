@@ -13,7 +13,7 @@ class NavigationController extends Controller
 
         try {
 
-            $availableCategories = Category::all()->with('subcategories');
+            $availableCategories = Category::with('subcategories')->get();
 
             // $categoriesWithSubs = $availableCategories->map(function ($category) {
             //     if($category->has_subcategory){
