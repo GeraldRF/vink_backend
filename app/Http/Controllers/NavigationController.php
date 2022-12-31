@@ -15,17 +15,6 @@ class NavigationController extends Controller
 
             $availableCategories = Category::with('subcategories')->get();
 
-            // $categoriesWithSubs = $availableCategories->map(function ($category) {
-            //     if($category->has_subcategory){
-            //         return [
-            //             ...$category,
-            //             'subcategory' => SubCategory::where(['category_id' => $category->id])
-            //         ];
-            //     } else {
-            //         return $category;
-            //     }
-            // });
-
             return response($availableCategories, 200);
 
         } catch(Exception $e){
