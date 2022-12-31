@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Route;
 //Public routes
 Route::get('/settings', [SettingController::class, 'getAllSettings']);
 Route::post('/settings/update', [SettingController::class, 'updateSetting']);
-Route::get('/get-menu', [NavigationController::class, 'getInitialMenu']);
+Route::get('/main-status', [NavigationController::class, 'getMainStatus']);
 
 //Admin routes
 Route::middleware('auth:sanctum') -> group(function () {
     Route::post('/create-product', [ProductController::class, 'createProduct']);
-    Route::post('/get-all-products', [ProductController::class, 'getAllProducts']);
+    Route::post('/all-products', [ProductController::class, 'getAllProducts']);
 });
