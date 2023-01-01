@@ -13,8 +13,11 @@ class Category extends Model
 
     protected $fillable = ['name', 'slug', 'icon', 'has_subcategory', 'show_in_home'];
 
-    public function subcategories()
-    {
-        return $this->hasMany(SubCategory::class);
+    public function subcategories(){
+        return $this->hasMany(Subcategory::class);
+    }
+
+    public function products(){
+        return $this->belongsToMany(Product::class);
     }
 }

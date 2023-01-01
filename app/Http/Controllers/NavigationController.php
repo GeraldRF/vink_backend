@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Setting;
-use App\Models\SubCategory;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class NavigationController extends Controller
@@ -16,10 +15,19 @@ class NavigationController extends Controller
         try {
 
             $response = Cache::remember('main-status', 1000000, function () {
+
+                $settings = Setting::all();
+                
+                $categories = Category::with('subcategories')->with(['products' => function ($query) {
+                    $query->latest()->take(8);
+                }])->get();
+
+                $featuredProducts = Product::where(['featured' => 1])->get();
+
                 return json_encode([
-                    'settings' => Setting::all(),
-                    'menu' => Category::with('subcategories')->get(),
-                    'products' => ''
+                    'settings' => $settings,
+                    'categories' => $categories,
+                    'featured' => $featuredProducts
                 ]);
             });
 
