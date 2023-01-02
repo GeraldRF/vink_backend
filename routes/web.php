@@ -20,3 +20,7 @@ Route::get('/', function () {
 
 Route::post('/login', [UserController::class, 'login']);
 
+Route::middleware('auth:sanctum') -> group(function () {
+    Route::get('/get-current-user', [UserController::class, 'getLoginUser']);
+    Route::get('/logout', [UserController::class, 'logout']);
+});

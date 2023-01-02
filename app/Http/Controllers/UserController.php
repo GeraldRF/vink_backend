@@ -38,4 +38,20 @@ class UserController extends Controller
 
     }
 
+    public function logout(Request $request) {
+        try{
+            $request->user()->currentAccessToken()->delete();
+
+            return response('logout', 200);
+        }
+        catch(Exception $e){
+            return response($e->getMessage());
+        }
+        
+    }
+
+    public function getLoginUser(){
+        return response(Auth::user());
+    }
+
 }
